@@ -32,3 +32,33 @@ Defining a table is 100% declarative. Here's a simple example:
   </tbody>
 </table>
 ```
+
+## Implicit
+
+Implicit declariation of table attributes is avaliable using two controls. 
+
+1) define a blank `<thead></thead>`
+
+2) pass desired column names in as attribute tags on table rows:
+```
+<table at-table class="table table-striped table-bordered" list="shortLoremList">
+  <thead></thead>
+  <tbody>
+    <tr>
+      <td at-implicit class="50px" attribute="id"></td>
+      <td at-implicit title="Random word" attribute="description"></td>
+    </tr>
+  </tbody>
+</table>
+```
+
+## Sorting/Pagination
+
+## Custom Headers and Cells
+
+## Filtering
+
+
+
+
+

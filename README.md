@@ -8,7 +8,7 @@ Check out the [examples](http://ssmm.github.io/angular-table/examples.html) for 
 
 ## How
 
-All you have to do in your controller is setting up a list on your `$scope`:
+All you have to do in your controller is set up a list on your `$scope`:
 
 ```javascript
 $scope.nameList = [{name: "Laura"}, {name: "Lea"}, {name: "Sara"}]
@@ -33,13 +33,23 @@ Defining a table is 100% declarative. Here's a simple example:
 </table>
 ```
 
-## Implicit
+## Implicit Elements
 
-Implicit declariation of table attributes is avaliable using two controls. 
+Implicit declariation of table attributes is avaliable using the following controls. 
 
-1) define a blank `<thead></thead>`
+1) Specify the at-implicit attribute on any td element  
 
 2) pass desired column names in as attribute tags on table rows:
+  `<td at-implicit title="Random word" attribute="description"></td>`
+  
+  - Set fixed widths on elements by passing size into a class:
+      `<td at-implicit class="100px"></td>`
+
+
+
+
+
+Example: 
 ```
 <table at-table class="table table-striped table-bordered" list="shortLoremList">
   <thead></thead>

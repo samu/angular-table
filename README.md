@@ -6,7 +6,7 @@ Lets you declare sortable, pageable tables with minimal effort while providing h
 
 Check out the [examples](http://ssmm.github.io/angular-table/examples.html) for more information.
 
-## How
+## Setup
 
 All you have to do in your controller is set up a list on your `$scope`:
 

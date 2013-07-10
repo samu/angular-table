@@ -164,7 +164,7 @@
           $scope.update();
           return $scope.$watch("list", function() {
             return $scope.update();
-          });
+          }, true);
         }
       };
     }

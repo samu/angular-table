@@ -59,6 +59,8 @@ angular.module("angular-table").directive "atPagination", [() ->
 
       $scope.update()
 
+      $scope.$watch "itemsPerPage", () ->
+        $scope.update()
       $scope.$watch "list", () ->
         $scope.update()
 

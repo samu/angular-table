@@ -168,6 +168,9 @@
             return $scope.currentPage = page;
           };
           $scope.update();
+          $scope.$watch("itemsPerPage", function() {
+            return $scope.update();
+          });
           return $scope.$watch("list", function() {
             return $scope.update();
           });

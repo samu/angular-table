@@ -1,0 +1,24 @@
+{
+  "name": "angular-table",
+  "main": "angular-table.min.js",
+  "version": "0.0.1",
+  "homepage": "\"https://github.com/ssmm/angular-table\"",
+  "authors": [
+    "Samuel Mueller"
+  ],
+  "keywords": [
+    "angularjs",
+    "angular-table",
+    "table"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "test",
+    "coffee",
+    "gem",
+    "Rakefile",
+    "karma.conf.js"
+  ]
+}

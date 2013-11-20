@@ -79,12 +79,12 @@
               }
               $scope.getSortIcon = function(predicate) {
                 if (predicate !== $scope.predicate) {
-                  return "icon-minus";
+                  return "glyphicon glyphicon-minus";
                 }
                 if ($scope.descending) {
-                  return "icon-chevron-down";
+                  return "glyphicon glyphicon-chevron-down";
                 } else {
-                  return "icon-chevron-up";
+                  return "glyphicon glyphicon-chevron-up";
                 }
               };
               return setup.link($scope, $element, $attributes);
@@ -117,7 +117,7 @@
       return {
         replace: true,
         restrict: "E",
-        template: "      <div class='pagination' style='margin: 0px;'>        <ul>          <li ng-class='{disabled: currentPage <= 0}'>            <a href='' ng-click='goToPage(currentPage - 1)'>&laquo;</a>          </li>          <li ng-class='{active: currentPage == page}' ng-repeat='page in pages'>            <a href='' ng-click='goToPage(page)'>{{page + 1}}</a>          </li>          <li ng-class='{disabled: currentPage >= numberOfPages - 1}'>            <a href='' ng-click='goToPage(currentPage + 1); normalize()'>&raquo;</a>          </li>        </ul>      </div>",
+        template: "<ul class='pagination'>          <li ng-class='{disabled: currentPage <= 0}'>            <a href='' ng-click='goToPage(currentPage - 1)'>&laquo;</a>          </li>          <li ng-class='{active: currentPage == page}' ng-repeat='page in pages'>            <a href='' ng-click='goToPage(page)'>{{page + 1}}</a>          </li>          <li ng-class='{disabled: currentPage >= numberOfPages - 1}'>            <a href='' ng-click='goToPage(currentPage + 1); normalize()'>&raquo;</a>          </li>        </ul>",
         scope: {
           itemsPerPage: "@",
           instance: "=",

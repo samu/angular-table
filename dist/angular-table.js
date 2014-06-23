@@ -347,6 +347,9 @@
       $scope.$watch(cvn.sort_context, function() {
         return update();
       });
+      $scope.$watch($attributes.atList, function() {
+            return update();
+        });
       $scope.$watch("" + $attributes.atList + ".length", function() {
         $scope[irk_number_of_pages] = Math.ceil(w.get_list().length / w.get_items_per_page());
         return update();

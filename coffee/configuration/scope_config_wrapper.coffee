@@ -18,3 +18,6 @@ class ScopeConfigWrapper
 
   set_current_page: (current_page) ->
     @scope.$eval("#{@configuration_variable_names.current_page}=#{current_page}")
+
+  get_order_by: () ->
+    @scope.$eval(@configuration_variable_names.order_by) || 'orderBy'

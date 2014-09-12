@@ -5,3 +5,4 @@ class ConfigurationVariableNames
     @fill_last_page = "#{@config_object_name}.fillLastPage"
     @max_pages = "#{@config_object_name}.maxPages"
     @current_page = "#{@config_object_name}.currentPage"
+    @order_by = "#{@config_object_name}.orderBy"

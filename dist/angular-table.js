@@ -82,6 +82,7 @@
       this.fill_last_page = "" + this.config_object_name + ".fillLastPage";
       this.max_pages = "" + this.config_object_name + ".maxPages";
       this.current_page = "" + this.config_object_name + ".currentPage";
+      this.order_by = "" + this.config_object_name + ".orderBy";
     }
 
     return ConfigurationVariableNames;
@@ -117,6 +118,10 @@
 
     ScopeConfigWrapper.prototype.set_current_page = function(current_page) {
       return this.scope.$eval("" + this.configuration_variable_names.current_page + "=" + current_page);
+    };
+
+    ScopeConfigWrapper.prototype.get_order_by = function() {
+      return this.scope.$eval(this.configuration_variable_names.order_by) || 'orderBy';
     };
 
     return ScopeConfigWrapper;
@@ -249,7 +254,7 @@
 
     function StandardSetup(configuration_variable_names, list) {
       this.list = list;
-      this.repeatString = "item in " + this.list + " | orderBy:predicate:descending";
+      this.repeatString = "item in " + this.list + " | " + (configuration_variable_names.get_order_by()) + ":predicate:descending";
     }
 
     StandardSetup.prototype.compile = function(element, attributes, transclude) {
@@ -290,19 +295,19 @@
       var cvn, get_filler_array, get_sorted_and_paginated_list, update, w;
       cvn = this.configuration_variable_names;
       w = new ScopeConfigWrapper($scope, cvn, $attributes.atList);
-      get_sorted_and_paginated_list = function(list, current_page, items_per_page, sort_context, predicate, descending, $filter) {
+      get_sorted_and_paginated_list = function(list, current_page, items_per_page, order_by, sort_context, predicate, descending, $filter) {
         var from_page, val;
         if (list) {
           val = list;
           from_page = items_per_page * current_page - list.length;
           if (sort_context === "global") {
-            val = $filter("orderBy")(val, predicate, descending);
+            val = $filter(order_by)(val, predicate, descending);
             val = $filter("limitTo")(val, from_page);
             val = $filter("limitTo")(val, items_per_page);
           } else {
             val = $filter("limitTo")(val, from_page);
             val = $filter("limitTo")(val, items_per_page);
-            val = $filter("orderBy")(val, predicate, descending);
+            val = $filter(order_by)(val, predicate, descending);
           }
           return val;
         } else {
@@ -334,7 +339,7 @@
       };
       update = function() {
         var nop;
-        $scope.sorted_and_paginated_list = get_sorted_and_paginated_list(w.get_list(), w.get_current_page(), w.get_items_per_page(), w.get_sort_context(), $scope.predicate, $scope.descending, $filter);
+        $scope.sorted_and_paginated_list = get_sorted_and_paginated_list(w.get_list(), w.get_current_page(), w.get_items_per_page(), w.get_order_by(), w.get_sort_context(), $scope.predicate, $scope.descending, $filter);
         nop = Math.ceil(w.get_list().length / w.get_items_per_page());
         return $scope.filler_array = get_filler_array(w.get_list(), w.get_current_page(), nop, w.get_items_per_page());
       };

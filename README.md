@@ -75,6 +75,14 @@ And thats it, our table is sortable by birthdate instantly! We can make the othe
 sortable aswell, by using the `at-sortable` attribute only. Also, note how we removed the
 `at-implicit` attribute and rendered our own content by using a custom angular expression.
 
+Also, you can also specify which element to use for sorting:
+
+```html
+<td at-sortable="birthdate" at-initial-sorting="desc">
+  {{item.birthdate.substring(0, 10)}}
+</td>
+```
+
 Our list of people is pretty long though, and we hate scrolling, so breaking up the table into
 smaller chunks and making it possible to go through it with a pagination would be cool. A task
 done within seconds: We need to define two additional keywords in our table ...

@@ -14,6 +14,7 @@
       this.attribute = bodyMarkup.attribute;
       this.title = bodyMarkup.title;
       this.sortable = bodyMarkup.sortable;
+      this.sortableElement = bodyMarkup.sortableElement;
       this.width = bodyMarkup.width;
       this.initialSorting = bodyMarkup.initialSorting;
       if (headerMarkup) {
@@ -46,10 +47,16 @@
 
     ColumnConfiguration.prototype.renderSorting = function(element) {
       var icon;
-      if (this.sortable) {
-        element.attr("ng-click", "predicate = '" + this.attribute + "'; descending = !descending;");
+      var sortableAttribute;
+      if(this.sortableElement){
+        sortableAttribute = this.sortableElement;
+      } else if (this.sortable) {
+        sortableAttribute = this.attribute;
+      }
+      if(this.sortableElement || this.sortable){
+        element.attr("ng-click", "predicate = '" + sortableAttribute + "'; descending = !descending;");
         icon = angular.element("<i style='margin-left: 10px;'></i>");
-        icon.attr("ng-class", "getSortIcon('" + this.attribute + "', predicate)");
+        icon.attr("ng-class", "getSortIcon('" + sortableAttribute + "', predicate)");
         return element.append(icon);
       }
     };
@@ -194,7 +201,7 @@
     };
 
     TableConfiguration.prototype.collectBodyMarkup = function(table) {
-      var attribute, bodyDefinition, initialSorting, sortable, td, title, width, _i, _len, _ref;
+      var attribute, bodyDefinition, initialSorting, sortable, sortableElement, td, title, width, _i, _len, _ref;
       bodyDefinition = [];
       _ref = table.find("td");
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -203,12 +210,14 @@
         attribute = td.attr("at-attribute");
         title = td.attr("at-title") || this.capitaliseFirstLetter(td.attr("at-attribute"));
         sortable = td.attr("at-sortable") !== void 0 || this.isSortable(td.attr("class"));
+        sortableElement = td.attr("at-sortable");
         width = this.extractWidth(td.attr("class"));
         initialSorting = this.getInitialSorting(td);
         bodyDefinition.push({
           attribute: attribute,
           title: title,
           sortable: sortable,
+          sortableElement: sortableElement,
           width: width,
           initialSorting: initialSorting
         });
@@ -418,10 +427,14 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         bd = _ref[_i];
         if (bd.initialSorting) {
-          if (!bd.attribute) {
+          if (!bd.attribute && !bd.sortableElement) {
             throw "initial-sorting specified without attribute.";
           }
-          $scope.predicate = bd.attribute;
+          if(bd.sortableElement){
+            $scope.predicate = bd.sortableElement;
+          } else {
+            $scope.predicate = bd.attribute;
+          }
           _results.push($scope.descending = bd.initialSorting === "desc");
         } else {
           _results.push(void 0);

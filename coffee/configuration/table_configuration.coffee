@@ -46,7 +46,7 @@ class TableConfiguration
       title = td.attr("at-title") || @capitaliseFirstLetter(td.attr("at-attribute"))
       sortable = td.attr("at-sortable") != undefined || @isSortable(td.attr("class"))
       width = @extractWidth(td.attr("class"))
-      ngIf = td.attr("ng-if") != undefined || null
+      ngIf = if td.attr("ng-if") != undefined then td.attr("ng-if") else null
       initialSorting = @getInitialSorting(td)
 
       bodyDefinition.push {

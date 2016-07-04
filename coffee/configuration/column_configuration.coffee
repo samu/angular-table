@@ -4,6 +4,8 @@ class ColumnConfiguration
     @title          = bodyMarkup.title
     @sortable       = bodyMarkup.sortable
     @width          = bodyMarkup.width
+    @ngIf           = bodyMarkup.ngIf
+    
     @initialSorting = bodyMarkup.initialSorting
 
     # TODO untested

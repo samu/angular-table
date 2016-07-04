@@ -15,6 +15,7 @@
       this.title = bodyMarkup.title;
       this.sortable = bodyMarkup.sortable;
       this.width = bodyMarkup.width;
+      this.ngIf = bodyMarkup.ngIf;
       this.initialSorting = bodyMarkup.initialSorting;
       if (headerMarkup) {
         this.customContent = headerMarkup.customContent;
@@ -225,7 +226,7 @@
         title = td.attr("at-title") || this.capitaliseFirstLetter(td.attr("at-attribute"));
         sortable = td.attr("at-sortable") !== void 0 || this.isSortable(td.attr("class"));
         width = this.extractWidth(td.attr("class"));
-        ngIf = td.attr("ng-if") !== void 0 || null;
+        ngIf = td.attr("ng-if") !== void 0 ? td.attr("ng-if") : null;
         initialSorting = this.getInitialSorting(td);
         bodyDefinition.push({
           attribute: attribute,

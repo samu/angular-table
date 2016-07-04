@@ -32,10 +32,16 @@ class ColumnConfiguration
   renderWidth: (element) ->
     element.attr("width", @width)
 
+  renderNgIf: (element) ->
+    if @ngIf
+      element.attr("ng-if", @ngIf)
+
+
   renderHtml: () ->
     th = @createElement()
     @renderTitle(th)
     @renderAttributes(th)
     @renderSorting(th)
     @renderWidth(th)
+    @renderNgIf(th)
     return th

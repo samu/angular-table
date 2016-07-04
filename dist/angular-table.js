@@ -58,6 +58,12 @@
       return element.attr("width", this.width);
     };
 
+    ColumnConfiguration.prototype.renderNgIf = function(element) {
+      if (this.ngIf) {
+        return element.attr("ng-if", this.ngIf);
+      }
+    };
+
     ColumnConfiguration.prototype.renderHtml = function() {
       var th;
       th = this.createElement();
@@ -65,6 +71,7 @@
       this.renderAttributes(th);
       this.renderSorting(th);
       this.renderWidth(th);
+      this.renderNgIf(th);
       return th;
     };
 
@@ -208,7 +215,7 @@
     };
 
     TableConfiguration.prototype.collectBodyMarkup = function(table) {
-      var attribute, bodyDefinition, initialSorting, sortable, td, title, width, _i, _len, _ref;
+      var attribute, bodyDefinition, initialSorting, ngIf, sortable, td, title, width, _i, _len, _ref;
       bodyDefinition = [];
       _ref = table.find("td");
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -218,12 +225,14 @@
         title = td.attr("at-title") || this.capitaliseFirstLetter(td.attr("at-attribute"));
         sortable = td.attr("at-sortable") !== void 0 || this.isSortable(td.attr("class"));
         width = this.extractWidth(td.attr("class"));
+        ngIf = td.attr("ng-if") !== void 0 || null;
         initialSorting = this.getInitialSorting(td);
         bodyDefinition.push({
           attribute: attribute,
           title: title,
           sortable: sortable,
           width: width,
+          ngIf: ngIf,
           initialSorting: initialSorting
         });
       }

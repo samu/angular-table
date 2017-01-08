@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git://github.com/samu/angular-table.git"
   },
+  "main": "./index.js",
   "devDependencies": {
     "bower": "~1.3.3",
     "grunt": "~0.4.1",

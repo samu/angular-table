@@ -36,7 +36,6 @@
     "karma-phantomjs-launcher": "^0.1.4"
   },
   "scripts": {
-    "postinstall": "bower install",
     "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   }
 }

@@ -19,6 +19,7 @@
     "type": "git",
     "url": "git://github.com/samu/angular-table.git"
   },
+  "main": "./index.js",
   "dependencies": {
     "angular": "~1.2.9"
   },

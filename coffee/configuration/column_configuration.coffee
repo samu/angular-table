@@ -4,6 +4,8 @@ class ColumnConfiguration
     @title          = bodyMarkup.title
     @sortable       = bodyMarkup.sortable
     @width          = bodyMarkup.width
+    @ngIf           = bodyMarkup.ngIf
+    
     @initialSorting = bodyMarkup.initialSorting
 
     # TODO untested
@@ -32,10 +34,16 @@ class ColumnConfiguration
   renderWidth: (element) ->
     element.attr("width", @width)
 
+  renderNgIf: (element) ->
+    if @ngIf
+      element.attr("ng-if", @ngIf)
+
+
   renderHtml: () ->
     th = @createElement()
     @renderTitle(th)
     @renderAttributes(th)
     @renderSorting(th)
     @renderWidth(th)
+    @renderNgIf(th)
     return th

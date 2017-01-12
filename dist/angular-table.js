@@ -366,6 +366,9 @@
       $scope.$watchCollection($attributes.atList, function() {
         return update();
       });
+      $scope.$watch($attributes.atList, function() {
+            return update();
+        });
       $scope.$watch("" + $attributes.atList + ".length", function() {
         $scope.numberOfPages = Math.ceil(w.getList().length / w.getItemsPerPage());
         return update();

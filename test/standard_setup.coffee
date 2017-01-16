@@ -2,10 +2,10 @@ describe "angular-table", () ->
   describe "standard setup", () ->
 
     expectedRows = [
-      ["0", "Helsinki",  "Finland"],
-      ["1", "Zurich",    "Switzerland"],
-      ["2", "Amsterdam", "Netherlands"],
-      ["3", "Berlin",    "Germany"]
+      ["0", "Helsinki",  "Finland", "FI"],
+      ["1", "Zurich",    "Switzerland", "CH"],
+      ["2", "Amsterdam", "Netherlands", "NL"],
+      ["3", "Berlin",    "Germany", "DE"]
     ]
 
     beforeEach(() ->
@@ -15,14 +15,17 @@ describe "angular-table", () ->
           id: 0
           name: "Helsinki"
           country: "Finland"
+          "country-code": "FI"
         }, {
           id: 1
           name: "Zurich"
           country: "Switzerland"
+          "country-code": "CH"
         }, {
           id: 2
           name: "Amsterdam"
           country: "Netherlands"
+          "country-code": "NL"
         }]
       )
 
@@ -44,6 +47,6 @@ describe "angular-table", () ->
       @gui.alterScope((scopeWrapper, vars) ->
         cities = scopeWrapper.get("cities")
         cities.pop()
-        cities.push({id: 3, name: "Berlin", country: "Germany"})
+        cities.push({id: 3, name: "Berlin", country: "Germany", "country-code": "DE"})
       )
       expect(@gui.table.rows).toEqual [expectedRows[1], expectedRows[0], expectedRows[3]]

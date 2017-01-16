@@ -4,5 +4,5 @@ angular.module("angular-table").directive "atImplicit", [() ->
   compile: (element, attributes, transclude) ->
     attribute = element.attr("at-attribute")
     throw "at-implicit specified without at-attribute: #{element.html()}" if not attribute
-    element.append "<span ng-bind='item.#{attribute}'></span>"
+    element.append "<span ng-bind='item[\"#{attribute}\"]'></span>"
 ]
